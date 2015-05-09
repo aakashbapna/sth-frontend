@@ -3,11 +3,10 @@ import {Flux} from 'flummox';
 import FBActions from './actions/FBActions';
 import FBStore from './stores/FBStore';
 
-class AppFlux extends Flux {
+export default class AppFlux extends Flux {
 	constructor() {
 		super();
-
-		this.createActions('fb', FBActions);
-		this.createStore('fb', FBStore, this);
+		this.createActions('app', FBActions);
+		this.createStore('app', FBStore, {});
 	}
 }

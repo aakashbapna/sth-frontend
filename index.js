@@ -11,9 +11,10 @@ if (__DEV__) {
 }
 
 import React from 'react';
+import App from './src/App';
 
-import Page from './src/Page';
+let flux = new Flux();
 
 window.addEventListener('DOMContentLoaded', function() {
-	React.render(<Page/>, document.body);
+	React.render(<App/>, document.body);
 });
