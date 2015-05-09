@@ -1,6 +1,7 @@
 import React from 'react';
+import FluxComponent from 'flummox/component';
 
-export default class FBLogin extends React.Component {
+class FBLoginComponent extends React.Component {
 	componentDidMount() {
 		let {flux} = this.props;
 		window.fbAsyncInit = function() {
@@ -33,5 +34,13 @@ export default class FBLogin extends React.Component {
 		} else {
 			return <button onClick={this.handleClick.bind(this)}>Login</button>
 		}
+	}
+}
+
+export default class FBLogin extends React.Component {
+	render() {
+		<FluxComponent flux={this.props.flux} connectToStores={['fb']}>
+			<FBLoginComponent/>
+		</FluxComponent>
 	}
 }
