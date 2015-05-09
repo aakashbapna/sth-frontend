@@ -2,7 +2,7 @@ import React from 'react';
 
 import {RaisedButton} from 'material-ui';
 
-import AddEntry from "./components/AddEntry"
+import AddProduct from "./components/AddProduct/"
 
 
 export default class Dashboard extends React.Component {
@@ -32,7 +32,7 @@ export default class Dashboard extends React.Component {
 			<RaisedButton onClick={this.hello.bind(this)} label="Add new entry" style={{"float": "right"}} />
 			<h2> Catalogue Page </h2>
 
-			<AddEntry ref='addentry' categories={this.state.menuItems} />
+			<AddProduct ref='addentry' categories={this.state.menuItems} />
 		</div>;
 	}
 }
