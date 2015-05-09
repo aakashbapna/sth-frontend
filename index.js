@@ -12,11 +12,30 @@ if (__DEV__) {
 
 import React from 'react';
 import App from './src/App';
+import Dashboard from './src/Dashboard';
+import Signup from './src/Signup';
+import Router from 'react-router';
+
+let {
+	DefaultRoute,
+	Link,
+	Route,
+	RouteHandler
+} = Router;
 
 let container = document.createElement('div');
 container.id = 'app';
 
+let routes = (
+	<Route name='app' path='/' handler={App}>
+		<Route name='dashboard' handler={Dashboard} />
+		<DefaultRoute handler={Signup}/>
+	</Route>
+);
+
 window.addEventListener('DOMContentLoaded', function() {
 	document.body.appendChild(container);
-	React.render(<App/>, container);
+	Router.run(routes, function(Handler) {
+		React.render(<Handler/>, container);
+	});
 });

@@ -1,11 +1,10 @@
 import React from 'react';
-import Page from './components/Page';
-import Flux from './Flux';
-
-let flux = new Flux();
+import {RouteHandler} from 'react-router';
 
 export default class App extends React.Component {
 	render() {
-		return <Page flux={flux}/>;
+		return <div className='page'>
+			<RouteHandler/>
+		</div>;
 	}
 }

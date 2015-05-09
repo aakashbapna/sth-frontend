@@ -1,5 +1,5 @@
-import React from 'react/addons';
 import '../styles/stylesheet.less';
+import React from 'react/addons';
 import FluxComponent from 'flummox/component';
 import FBLogin from './FBLogin';
 
