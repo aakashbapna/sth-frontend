@@ -8,7 +8,6 @@ export default class extends React.Component {
 	render() {
 		let {flux} = this.props;
 		return <FluxComponent flux={flux} connectToStores={['fb']}>
-			<h1>Hi!!!</h1>
 			<FBLogin/>
 		</FluxComponent>
 	}

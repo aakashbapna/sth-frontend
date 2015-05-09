@@ -6,29 +6,26 @@ export default class FBStore extends Store {
 
 		const fbActionIds = flux.getActionIds('fb');
 
-		this.register(fbActionIds.isLoggedIn, this.handleLoginCheck);
+		this.register(fbActionIds.isLoggedIn, this.handleLogin);
 		this.register(fbActionIds.doLogin, this.handleLogin);
 		this.register(fbActionIds.delay, this.handleDelay);
 
 		this.state = {
-			loginCheck: false,
-			login: false
+			login: false,
+			auth: null
 		};
 	}
 	handleDelay() {
 		console.log('delay Called');
 	}
-	handleLoginCheck(resp) {
-		console.log(resp);
-		this.setState({
-			loginCheck: true
-		});
-	}
 	handleLogin(resp) {
 		console.log(resp);
-		this.setState({
-			login: true
-		});
+		if (resp.status === 'connected') {
+			this.setState({
+				login: true,
+				auth: resp.authResponse
+			});
+		}
 	}
 	getLogin() {
 		return this.state.login;

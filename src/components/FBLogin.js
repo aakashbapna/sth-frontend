@@ -23,8 +23,15 @@ export default class FBLogin extends React.Component {
 		}(document, 'script', 'facebook-jssdk'));
 
 	}
+	handleClick() {
+		console.log(this);
+		this.props.flux.getActions('fb').doLogin();
+	}
 	render() {
-		console.log(this.props);
-		return <h1>hi</h1>;
+		if (this.props.login) {
+			return <div>{this.props.auth}</div>
+		} else {
+			return <button onClick={this.handleClick.bind(this)}>Login</button>
+		}
 	}
 }
