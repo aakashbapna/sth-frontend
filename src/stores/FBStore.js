@@ -18,9 +18,8 @@ window.fbAsyncInit = function() {
 	fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
-export class FBStore extends Store {
+export default class FBStore extends Store {
 	constructor(flux) {
-		console.log('came here');
 		super();
 
 		const fbActionIds = flux.getActionIds('fb');

@@ -52,7 +52,7 @@ module.exports = {
 		new webpack.DefinePlugin({
 			'process.env': {
 				NODE_ENV: JSON.stringify(process.env.NODE_ENV),
-				FB_TOKEN: JSON.stringify(process.env.FB_TOKEN)
+				FB_APP_ID: JSON.stringify(process.env.FB_APP_ID)
 			}
 		})
 	]

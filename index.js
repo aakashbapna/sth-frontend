@@ -13,8 +13,6 @@ if (__DEV__) {
 import React from 'react';
 import App from './src/App';
 
-let flux = new Flux();
-
 window.addEventListener('DOMContentLoaded', function() {
 	React.render(<App/>, document.body);
 });
