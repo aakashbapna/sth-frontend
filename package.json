@@ -1,0 +1,15 @@
+{
+  "name": "sth-frontend",
+  "version": "1.0.0",
+  "description": "front-end",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@bitbucket.org:boopathi/sth-frontend"
+  },
+  "author": "boopathi",
+  "license": "ISC"
+}
