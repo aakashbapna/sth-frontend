@@ -1,9 +1,60 @@
 import React from 'react';
+import {DropDownMenu, TextField, Checkbox} from 'material-ui';
+
+class Delivery extends React.Component{
+	render(){
+		return <div>
+			<Checkbox name="pickup" value="checkboxValue1" label="Pickup" />
+			<Checkbox name="delivery" value="checkboxValue1" label="Delivery" />
+		</div>
+	}
+}
 
 export default class Dashboard extends React.Component {
+	state = {
+		menuItems : [
+		   { payload: '1', text: 'Fruits & Vegetables' },
+		   { payload: '2', text: 'Grocery & Staples' },
+		   { payload: '3', text: 'Bread Dairy & Eggs' },
+		   { payload: '4', text: 'Beverages' },
+		   { payload: '5', text: 'Branded Foods' },
+		   { payload: '6', text: 'Personal Care' }
+
+		],
+		errorText : "This field is required"
+	}
+	
 	render() {
-		return <div>
-			Dashboard
+		return <div className="dashboard">
+			<h2> Catalogue Page </h2>
+			<div> 
+				<span className="title"> Product category </span>
+				<DropDownMenu menuItems={this.state.menuItems} /> 
+			</div>
+			<div> 
+				<span className="title"> Product Name </span>
+				<TextField className='store-name-input' floatingLabelText='Name' />
+			</div>
+			<div> 
+				<span className="title"> Product Image </span>
+				<img src="" width="200px" height="200px"/>
+			</div>
+			<div> 
+				Delivery Options
+				<Delivery/>
+			</div>
+			<div>
+				<span className="title"> Product Price </span>
+				<TextField hintText="" errorText={this.state.errorText} onChange={this._handleErrorInputChange} />
+			</div>
+			 <div>
+				<span className="title"> Product Unit </span>
+				<TextField hintText="" errorText={this.state.errorText} onChange={this._handleErrorInputChange} />
+			</div>
+			<div>
+				<span className="title"> Product Quantity </span>
+				<TextField hintText="" errorText={this.state.errorText} onChange={this._handleErrorInputChange} />
+			</div>
 		</div>;
 	}
 }

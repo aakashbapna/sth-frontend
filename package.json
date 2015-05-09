@@ -24,6 +24,7 @@
     "file-loader": "^0.8.1",
     "flummox": "^4.0.0-alpha2",
     "flux": "^2.0.3",
+    "imagesize-loader": "0.0.4",
     "json-loader": "^0.5.1",
     "keymirror": "^0.1.1",
     "less": "^2.5.0",
