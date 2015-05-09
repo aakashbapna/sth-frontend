@@ -3,14 +3,31 @@ import {Actions} from 'flummox';
 let isLoggedIn = function() {
 	return new Promise(function(resolve, reject) {
 		FB.getLoginStatus(function(resp) {
-			resolve(resp);
+			if (resp.authResponse) {
+				FB.api('/me', function(resp2) {
+					resolve(Object.assign({}, resp, resp2));
+				});
+			} else {
+				resolve(resp);
+			}
 		});
 	});
 };
 
 let doLogin = function() {
 	return new Promise(function(resolve, reject) {
-		FB.login(resolve);
+		FB.login(function(resp) {
+			if(resp.authResponse) {
+				FB.api('/me', function(resp2) {
+					resolve(Object.assign({}, resp, resp2));
+				});
+			} else {
+				reject(new Error('couldn\'t get permissions'));
+			}
+		}, {
+			scope: 'email, public_profile',
+			return_scopes: true
+		});
 	});
 };
 

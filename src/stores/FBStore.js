@@ -10,16 +10,26 @@ export default class FBStore extends Store {
 		this.register(fbActionIds.doLogin, this.handleLogin);
 
 		this.state = {
+			status: '',
 			login: false,
-			auth: null
+			auth: null,
+			user: null
 		};
 	}
 	handleLogin(resp) {
-		console.log(resp);
+		this.setState({
+			status: resp.status,
+		})
 		if (resp.status === 'connected') {
+			let userinfo = {
+				fullname: resp.name,
+				userid: resp.id,
+				email: resp.email
+			};
 			this.setState({
 				login: true,
-				auth: resp.authResponse
+				auth: resp.authResponse,
+				user: userinfo
 			});
 		}
 	}

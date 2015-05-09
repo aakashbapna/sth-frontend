@@ -16,6 +16,8 @@ import Dashboard from './src/Dashboard';
 import Signup from './src/Signup';
 import Homepage from './src/Homepage';
 import Router from 'react-router';
+import RouterContainer from './src/components/RouterContainer';
+import './src/LoadFbSdk';
 
 let {
 	DefaultRoute,
@@ -38,10 +40,12 @@ let routes = (
 	</Route>
 );
 
+RouterContainer.set(Router.create({ routes }));
+
 window.addEventListener('DOMContentLoaded', function() {
 	document.body.appendChild(container);
 	document.body.appendChild(fbRoot);
-	Router.run(routes, function(Handler) {
+	RouterContainer.get().run(function(Handler) {
 		React.render(<Handler/>, container);
 	});
 });
