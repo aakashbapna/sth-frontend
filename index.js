@@ -2,7 +2,8 @@
 import 'babel-core/polyfill';
 import BPromise from 'bluebird';
 window.Promise = BPromise;
-import 'whatwg-fetch';
+import {fetch} from 'whatwg-fetch';
+window.fetch = fetch;
 const __DEV__ = true;
 const __PROD__ = !__DEV__;
 if (__DEV__) {
@@ -15,6 +16,7 @@ import App from './src/App';
 import Dashboard from './src/Dashboard';
 import Signup from './src/Signup';
 import Homepage from './src/Homepage';
+import GetStores from './src/GetStores';
 import Router from 'react-router';
 import RouterContainer from './src/components/RouterContainer';
 import './src/LoadFbSdk';
@@ -36,6 +38,7 @@ let routes = (
 	<Route name='app' path='/' handler={App}>
 		<Route name='dashboard' handler={Dashboard} />
 		<Route name='signup' handler={Signup} />
+		<Route name='getStoredItems' handler={GetStores} />
 		<DefaultRoute handler={Homepage}/>
 	</Route>
 );

@@ -44,7 +44,17 @@ module.exports = {
 			{
 				test: /\.(png|jpg|jpeg)$/,
 				loader: 'imagesize?name=[name].[ext]'
-			}
+			},
+			{
+				test: /\/whatwg-fetch\/fetch.js$/,
+	            loader: 'imports-loader'
+		            + '?self=>{}'
+		            + '!exports-loader'
+		            + '?fetch=self.fetch'
+		            + ',Headers=self.Headers'
+		            + ',Request=self.Request'
+		            + ',Response=self.Response'
+	        }
 		]
 	},
 	plugins: [
