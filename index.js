@@ -14,6 +14,7 @@ import React from 'react';
 import App from './src/App';
 import Dashboard from './src/Dashboard';
 import Signup from './src/Signup';
+import Homepage from './src/Homepage';
 import Router from 'react-router';
 
 let {
@@ -26,15 +27,20 @@ let {
 let container = document.createElement('div');
 container.id = 'app';
 
+let fbRoot = document.createElement('div');
+fbRoot.id = 'fb-root';
+
 let routes = (
 	<Route name='app' path='/' handler={App}>
 		<Route name='dashboard' handler={Dashboard} />
-		<DefaultRoute handler={Signup}/>
+		<Route name='signup' handler={Signup} />
+		<DefaultRoute handler={Homepage}/>
 	</Route>
 );
 
 window.addEventListener('DOMContentLoaded', function() {
 	document.body.appendChild(container);
+	document.body.appendChild(fbRoot);
 	Router.run(routes, function(Handler) {
 		React.render(<Handler/>, container);
 	});

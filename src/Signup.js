@@ -4,7 +4,7 @@ import Flux from './Flux';
 
 let flux = new Flux();
 
-export default class App extends React.Component {
+export default class Signup extends React.Component {
 	render() {
 		return <Page flux={flux}/>;
 	}

@@ -10,7 +10,7 @@ module.exports = {
 		library: 'App',
 		libraryTarget: 'umd',
 		path: path.join(__dirname, 'public'),
-		publicPath: '/',
+		publicPath: '/public/',
 		pathinfo: true,
 		filename: '[name].js'
 	},
@@ -43,7 +43,7 @@ module.exports = {
 			},
 			{
 				test: /\.(png|jpg|jpeg)$/,
-				loader: 'file-loader'
+				loader: 'imagesize?name=[name].[ext]'
 			}
 		]
 	},
