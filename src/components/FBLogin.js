@@ -39,7 +39,7 @@ class FBLoginComponent extends React.Component {
 
 export default class FBLogin extends React.Component {
 	render() {
-		<FluxComponent flux={this.props.flux} connectToStores={['fb']}>
+		return <FluxComponent flux={this.props.flux} connectToStores={['fb']}>
 			<FBLoginComponent/>
 		</FluxComponent>
 	}
