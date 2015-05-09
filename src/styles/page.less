@@ -1,6 +1,7 @@
 #app, .page {
 	background: @cyan-500;
 	width: 100%;
+	height: 100%;
 }
 
 .logo-big {
@@ -8,6 +9,30 @@
 	color: white;
 	font-size: 33px;
 	display: inline-block;
+}
+
+.store-form {
+	width: 50%;
+	min-width: 360px;
+	margin: auto;
+	padding: 20px;
+	height: inherit;
+	>.mui-paper {
+		background: white;
+		.mui-text-field {
+			margin: auto;
+			display: block;
+		}
+		.checkbox-container {
+			margin: 10px auto;
+			width: 256px;
+		}
+		.submit-button {
+			width: 256px;
+			margin: auto;
+			text-align: center;
+		}
+	}
 }
 
 .store-name-component {

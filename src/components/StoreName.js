@@ -9,7 +9,7 @@ class StoreNameComponent extends React.Component {
 	}
 	handleClick(e) {
 		this.props.flux.getActions('signup').setSync('name', this.state.name);
-		// this.props.flux.getActions('signup').setLocation();
+		RouterContainer.get().transitionTo('/signup');
 	}
 	handleChange(e) {
 		this.setState({

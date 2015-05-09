@@ -3,6 +3,7 @@ import {Actions} from 'flummox';
 let getLatLng = function() {
 	return new Promise(function(resolve, reject) {
 		navigator.geolocation.getCurrentPosition(function(position) {
+			console.log(position);
 			resolve({
 				lat: position.coords.latitude,
 				lng: position.coords.longitude

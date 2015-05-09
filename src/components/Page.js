@@ -9,10 +9,20 @@ export default class extends React.Component {
 		let {flux} = this.props;
 		window.fbLoaded.then(function() {
 			flux.getActions('fb').isLoggedIn();
+			flux.getActions('signup').setLocation();
 		});
 	}
 	render() {
-		return <FluxComponent flux={this.props.flux} connectToStores={['fb']}>
+		return <FluxComponent flux={this.props.flux} connectToStores={{
+			fb: store => {
+				return store.state;
+			},
+			signup: store => {
+				return {
+					signup: store.state
+				}
+			}
+		}}>
 			<FBLogin/>
 		</FluxComponent>;
 	}
