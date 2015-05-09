@@ -14,12 +14,6 @@ let doLogin = function() {
 	});
 };
 
-let delay = function(t) {
-	return new Promise(function(resolve) {
-		setTimeout(resolve, t || 100);
-	});
-};
-
 export default class FBAction extends Actions {
 	async isLoggedIn() {
 		try {
@@ -31,8 +25,5 @@ export default class FBAction extends Actions {
 	}
 	async doLogin() {
 		return await doLogin();
-	}
-	async delay() {
-		return await delay();
 	}
 }
