@@ -36,7 +36,7 @@ export default class Dashboard extends React.Component {
 				<TextField floatingLabelText='name' />
 			</div>
 			<div> 
-				<span className="title"> Product Image </span>
+				<div className="fix-image"><span className="title"> Product Image </span></div>
 				<img src="" width="200px" height="200px"/>
 			</div>
 			<div> 
