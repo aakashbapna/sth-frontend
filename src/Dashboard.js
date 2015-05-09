@@ -33,27 +33,27 @@ export default class Dashboard extends React.Component {
 			</div>
 			<div> 
 				<span className="title"> Product Name </span>
-				<TextField className='store-name-input' floatingLabelText='Name' />
+				<TextField floatingLabelText='name' />
 			</div>
 			<div> 
 				<span className="title"> Product Image </span>
 				<img src="" width="200px" height="200px"/>
 			</div>
 			<div> 
-				Delivery Options
+				<span className="title">Delivery Options</span>
 				<Delivery/>
 			</div>
 			<div>
 				<span className="title"> Product Price </span>
-				<TextField hintText="" errorText={this.state.errorText} onChange={this._handleErrorInputChange} />
+				<TextField floatingLabelText='price' />
 			</div>
 			 <div>
 				<span className="title"> Product Unit </span>
-				<TextField hintText="" errorText={this.state.errorText} onChange={this._handleErrorInputChange} />
+				<TextField floatingLabelText='unit' />
 			</div>
 			<div>
 				<span className="title"> Product Quantity </span>
-				<TextField hintText="" errorText={this.state.errorText} onChange={this._handleErrorInputChange} />
+				<TextField floatingLabelText='quantity' />
 			</div>
 		</div>;
 	}
