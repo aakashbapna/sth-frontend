@@ -1,5 +1,5 @@
 #app, .page {
-	background: @indigo-500;
+	background: @cyan-500;
 	height: 100%;
 }
 
@@ -7,8 +7,29 @@
 }
 
 .logo-big {
-	font-family: "Codystar";
+	font-family: 'Nova Flat', cursive;
 	color: white;
 	font-size: 33px;
 	display: inline-block;
+}
+
+.store-name-component {
+	position: relative;
+	top: 50%;
+	margin-top: -160px;
+	>.mui-paper {
+		width: 300px;
+		height: 140px;
+		margin: auto;
+		background: white;
+		.store-name-input {
+			display: block;
+			margin: 5px auto;
+		}
+		.store-name-button {
+			width: 100px;
+			display: block;
+			margin: 5px auto;
+		}
+	}
 }
