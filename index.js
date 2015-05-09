@@ -13,6 +13,10 @@ if (__DEV__) {
 import React from 'react';
 import App from './src/App';
 
+let container = document.createElement('div');
+container.id = 'app';
+
 window.addEventListener('DOMContentLoaded', function() {
-	React.render(<App/>, document.body);
+	document.body.appendChild(container);
+	React.render(<App/>, container);
 });
