@@ -13,11 +13,34 @@ export default class AddProduct extends React.Component {
 		entryMode: false
 	}
 
-	_onDialogSubmit(){
-		this.setState({
-			photoMode: false,
-			entryMode : true
+	addStoreToDB(storeObj){
+		fetch('/backend',{
+			method: 'POST',
+			body: storeObj
+		}).then(resp => {
+			if (resp.status !== 200) {
+				return resp.json().then(bodyJson => {
+					return Promise.reject(
+						new Error('Error in Fetch Call', resp.status, bodyJson)
+					);
+				});
+			}
+			alert('Store Got Added');
+		})
+		.catch(err => {
+			return Promise.reject(err);
 		});
+	}
+
+	_onDialogSubmit(){
+		if(this.state.photoMode){
+			this.setState({
+				photoMode: false,
+				entryMode : true
+			});
+		}else{
+			addStoreToDB();
+		}
 	}
 
 	onShow() {
@@ -27,7 +50,7 @@ export default class AddProduct extends React.Component {
 	render() {
 		var photoMode, entryMode, standardActions = [
 			  { text: 'Cancel' },
-			  { text: 'Next', onClick: this._onDialogSubmit.bind(this), ref: 'submit' }
+			  { text: this.state.photoMode ? 'Next' : 'Submit', onClick: this._onDialogSubmit.bind(this), ref: 'submit' }
 			];
 
 		if (this.state.photoMode)
