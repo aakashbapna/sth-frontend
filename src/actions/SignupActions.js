@@ -19,9 +19,9 @@ let getLatLng = function() {
 };
 
 let doSignup = function(data) {
-	return fetch('/backend/' + data.sid, {
+	return fetch('/backend', {
 		method: 'POST',
-		data: data
+		body: JSON.stringify(data)
 	});
 };
 

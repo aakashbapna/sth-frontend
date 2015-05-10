@@ -11,7 +11,7 @@ export default class FBLoginComponent extends React.Component {
 	render() {
 		if (this.props.login) {
 			return (
-				<FluxComponent flux={this.props.flux} connectToStores={{}}>
+				<FluxComponent flux={this.props.flux} connectToStores={['fb', 'signup']}>
 					<StoreForm {...this.props} />
 				</FluxComponent>
 			);

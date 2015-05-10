@@ -81,9 +81,11 @@ export default class StoreForm extends React.Component {
 							defaultValue='2' />
 					}
 				</div>
-				<div className='maps-container'>
-					<GoogleMaps location={this.props.signup.location} />
-				</div>
+				{this.props.signup.location.lat !== 0 &&
+					<div className='maps-container'>
+						<GoogleMaps location={this.props.signup.location} />
+					</div>
+				}
 				<div className='submit-button'>
 					<RaisedButton
 						label='Submit'
