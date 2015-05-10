@@ -4,6 +4,10 @@ import  Quagga from 'quagga';
 
 
 export default class PhotoMode extends React.Component {
+	componentWillUnmount(){
+		Quagga.stop();
+	}
+
 	componentDidMount() {
 		var App = {lastResult: null};
 	    var state = {
@@ -38,7 +42,6 @@ export default class PhotoMode extends React.Component {
 					  .then(function(response) {
 					    return response.json()
 					  }).then(function(json) {
-					  	console.log(json);
 					  	console.log(json.responseData.results[0].unescapedUrl);
 					  });
 	        	};
