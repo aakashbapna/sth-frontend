@@ -17,13 +17,6 @@ export default class EntryForm extends React.Component {
 				<div className="fix-image"><span className="title"> Product Image </span></div>
 				<img src={this.props.entry.image} width="200px" height="200px"/>
 			</div>
-			<div> 
-				<span className="title">Delivery Options</span>
-				<div>
-					<Checkbox name="pickup" value="checkboxValue1" label="Pickup" />
-					<Checkbox name="delivery" value="checkboxValue1" label="Delivery" />
-				</div>
-			</div>
 			<div>
 				<span className="title"> Product Price </span>
 				<TextField floatingLabelText='price' />
