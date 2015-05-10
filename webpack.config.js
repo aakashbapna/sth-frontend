@@ -14,7 +14,6 @@ module.exports = {
 		pathinfo: true,
 		filename: '[name].js'
 	},
-	devtool: '#source-map',
 	resolve: {
 		root: [
 			path.join(__dirname, 'node_modules')
@@ -58,7 +57,6 @@ module.exports = {
 		]
 	},
 	plugins: [
-		new ExtractTextPlugin('bundle.css'),
 		new webpack.DefinePlugin({
 			'process.env': {
 				NODE_ENV: JSON.stringify(process.env.NODE_ENV),
@@ -67,3 +65,24 @@ module.exports = {
 		})
 	]
 };
+
+if(process.env.NODE_ENV==='production') {
+	module.exports.plugins.push(
+		new webpack.optimize.DedupePlugin(),
+		new webpack.optimize.UglifyJsPlugin({
+			compress: {
+				warnings: false,
+				conditionals: true,
+				unused: true,
+				comparisons: true,
+				sequences: true,
+				dead_code: true,
+				evaluate: true,
+				if_return: true,
+				join_vars: true
+			}
+		})
+	);
+} else {
+	module.exports.devtool = '#source-map';
+}
