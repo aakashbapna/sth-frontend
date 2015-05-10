@@ -57,7 +57,7 @@ export default class AddProduct extends React.Component {
 			photoMode = <PhotoMode ref="photoMode" />;
 
 		if (this.state.entryMode)
-			entryMode = <EntryForm categories={this.props.categories} />
+			entryMode = <EntryForm categories={this.props.categories} entry={this.refs.photoMode.props} />
 
 		return <Dialog className="dialog-ele"
 					ref="addentry"

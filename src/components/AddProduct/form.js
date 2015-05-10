@@ -11,11 +11,11 @@ export default class EntryForm extends React.Component {
 			</div>
 			<div> 
 				<span className="title"> Product Name </span>
-				<TextField floatingLabelText='name' />
+				<TextField floatingLabelText='name' value={this.props.entry.product.attributes.product} />
 			</div>
 			<div> 
 				<div className="fix-image"><span className="title"> Product Image </span></div>
-				<img src="" width="200px" height="200px"/>
+				<img src={this.props.entry.image} width="200px" height="200px"/>
 			</div>
 			<div> 
 				<span className="title">Delivery Options</span>
