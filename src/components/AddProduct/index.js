@@ -22,8 +22,8 @@ export default class AddProduct extends React.Component {
 			  { text: 'Submit', onClick: this._onDialogSubmit, ref: 'submit' }
 			];
 
-		if (this.state.photoMode)
-			photoMode = <PhotoMode ref="photoMode" />;
+		// if (this.state.photoMode)
+		// 	photoMode = <PhotoMode ref="photoMode" />;
 
 		return <Dialog
 					ref="addentry"
@@ -34,6 +34,7 @@ export default class AddProduct extends React.Component {
 					onShow={this.onShow.bind(this)}
 					dismissOnClickAway={this.state.dismissOnClickAway}>
 				{photoMode}
+				<EntryForm categories={this.props.categories} />
 			</Dialog>;
 	}
 }

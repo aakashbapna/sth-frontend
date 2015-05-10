@@ -61,6 +61,16 @@ app.del('/backend/:storeid', function(req, res) {
 		data: req.body
 	}).pipe(res);
 });
+app.get('/getProductInfo', function(req, res) {
+	request.get({
+		url: 'http://eandata.com/feed/?v=3&keycode=E492E1B2554DA4E6&mode=json&find=' + req.query.find
+	}).pipe(res);
+});
+app.get('/getProductImage', function(req, res) {
+	request.get({
+		url: 'http://ajax.googleapis.com/ajax/services/search/images?v=1.0&q=' + req.query.q
+	}).pipe(res);
+});
 
 app.get('/*', function(req, res) {
 	res.end(fs.readFileSync('index.html'));
