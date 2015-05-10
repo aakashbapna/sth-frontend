@@ -19,7 +19,7 @@ let getLatLng = function() {
 };
 
 let doSignup = function(data) {
-	return fetch('/stores', {
+	return fetch('/backend/' + data.sid, {
 		method: 'POST',
 		data: data
 	});
