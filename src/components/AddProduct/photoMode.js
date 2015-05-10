@@ -92,7 +92,7 @@ export default class PhotoMode extends React.Component {
 
 	render() {
 		console.log(this.props);
-		return <div>
+		return <div id="photoMode">
 					<span className="status">{this.state.status}</span>
 					<div id="interactive" className="viewport"></div>
 				</div>;

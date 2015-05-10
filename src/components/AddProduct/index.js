@@ -16,7 +16,7 @@ export default class AddProduct extends React.Component {
 	addStoreToDB(storeObj){
 		fetch('/backend',{
 			method: 'POST',
-			body: storeObj
+			body: JSON.stringify(storeObj)
 		}).then(resp => {
 			if (resp.status !== 200) {
 				return resp.json().then(bodyJson => {
@@ -44,14 +44,27 @@ export default class AddProduct extends React.Component {
 			photoMode: false,
 			entryMode : false
 		});
-		
+
 		this.refs.addentry.dismiss();
 	}
 	_onDialogSubmit() {
-		if(this.state.photoMode){
+		if(this.state.photoMode) {
 			showForm();
-		}else{
-			addStoreToDB();
+		} else {
+			var props = this.refs.entryForm.refs;
+
+			var obj = {
+				"sid": 100010,
+				"name": props.name.getValue(),
+				"image": props.image.props.src,
+				"pid": props.barcode.props.value,
+				"price": props.price.getValue(),
+				"quantity": props.quantity.getValue(),
+				"unit": props.unit.getValue()
+			};
+
+
+			this.addStoreToDB(obj);
 		}
 	}
 
@@ -69,7 +82,7 @@ export default class AddProduct extends React.Component {
 			photoMode = <PhotoMode ref="photoMode" parent={this} />;
 
 		if (this.state.entryMode)
-			entryMode = <EntryForm categories={this.props.categories} entry={this.refs.photoMode.props} />
+			entryMode = <EntryForm ref="entryForm" categories={this.props.categories} entry={this.refs.photoMode.props} />
 
 		return <Dialog className="dialog-ele"
 					ref="addentry"
