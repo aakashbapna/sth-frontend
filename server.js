@@ -4,7 +4,7 @@ var http = require('http');
 var fs = require('fs');
 var port = process.env.PORT || 3000;
 var webpack = require('webpack');
-var	webpackMiddleware = require('webpack-dev-middleware');
+var webpackMiddleware = require('webpack-dev-middleware');
 var ProgressPlugin = require('webpack/lib/ProgressPlugin');
 var request = require('request');
 var API = 'https://frozen-meadow-6067.herokuapp.com/Stores';
@@ -36,7 +36,11 @@ function Middleware(config) {
 
 }
 
-app.use('/public', Middleware(require('./webpack.config.js')));
+if (process.env.NODE_ENV !== 'production')
+	app.use('/public', Middleware(require('./webpack.config.js')));
+else
+	app.use('/public', express.static(__dirname +'/public'));
+
 app.get('/backend/:storeid?', function(req, res) {
 	request.get({
 		url: API,
