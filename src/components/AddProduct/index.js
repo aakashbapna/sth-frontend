@@ -32,12 +32,24 @@ export default class AddProduct extends React.Component {
 		});
 	}
 
-	_onDialogSubmit(){
+	showForm() {
+		this.setState({
+			photoMode: false,
+			entryMode : true
+		});
+	}
+
+	_onDialogCancel() {
+		this.setState({
+			photoMode: false,
+			entryMode : false
+		});
+		
+		this.refs.addentry.dismiss();
+	}
+	_onDialogSubmit() {
 		if(this.state.photoMode){
-			this.setState({
-				photoMode: false,
-				entryMode : true
-			});
+			showForm();
 		}else{
 			addStoreToDB();
 		}
@@ -49,12 +61,12 @@ export default class AddProduct extends React.Component {
 
 	render() {
 		var photoMode, entryMode, standardActions = [
-			  { text: 'Cancel' },
+			  { text: 'Cancel', onClick: this._onDialogCancel.bind(this) },
 			  { text: this.state.photoMode ? 'Next' : 'Submit', onClick: this._onDialogSubmit.bind(this), ref: 'submit' }
 			];
 
 		if (this.state.photoMode)
-			photoMode = <PhotoMode ref="photoMode" />;
+			photoMode = <PhotoMode ref="photoMode" parent={this} />;
 
 		if (this.state.entryMode)
 			entryMode = <EntryForm categories={this.props.categories} entry={this.refs.photoMode.props} />

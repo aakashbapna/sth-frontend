@@ -4,6 +4,10 @@ import  Quagga from 'quagga';
 
 
 export default class PhotoMode extends React.Component {
+	state = {
+		status: "The live cam view will come here:"
+	}
+
 	componentWillUnmount(){
 		Quagga.stop();
 	}
@@ -45,6 +49,10 @@ export default class PhotoMode extends React.Component {
 						    return response.json()
 						  }).then(function(json) {
 						  	that.props.image = json.responseData.results[0].unescapedUrl;
+
+						  	console.log("product identified.. moving to thenext page...");
+
+						  	that.props.parent.showForm();
 						  });
 		        	};
 
@@ -54,25 +62,25 @@ export default class PhotoMode extends React.Component {
 
 		        if (App.lastResult !== code && code !== null) {
 		            App.lastResult = code;
-		            console.log(code);
+					that.setState({status: "Identified barcode value to be " + code});
 
 					fetch('/getProductInfo?find=' + code)
 					  .then(function(response) {
 					    return response.json()
 					  }).then(function(json) {
+					  	console.log(json);
 					    switch(json.status.code) {
 					    	case "200":
 								that.props.product = json.product;
-					    		if(json.product.image !== null) {
-					    			console.log("searchig for: " + json.product.attributes.product);
-					    			getImage(json.product.attributes.product);
-					    		}
+
+					    		that.setState({status: "product found. Trying to fetch image... searchig for: " + json.product.attributes.product});
+				    			getImage(json.product.attributes.product);
 					    		break;
 					    	case "404":
-					    		console.log("product not found");
+					    		that.setState({status: "product not found"});
 					    		break;
 					    	default:
-					    		console.log("unrecognized status" + json.status);
+					    		that.setState({status: "unrecognized status" + json.status});
 					    }
 					  }).catch(function(ex) {
 					    console.log('parsing failed', ex)
@@ -83,7 +91,9 @@ export default class PhotoMode extends React.Component {
 	}
 
 	render() {
-		return <div>The live cam view will come here:
+		console.log(this.props);
+		return <div>
+					<span className="status">{this.state.status}</span>
 					<div id="interactive" className="viewport"></div>
 				</div>;
 	}
