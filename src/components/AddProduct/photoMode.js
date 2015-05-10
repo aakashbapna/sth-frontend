@@ -55,8 +55,6 @@ export default class PhotoMode extends React.Component {
 				  .then(function(response) {
 				    return response.json()
 				  }).then(function(json) {
-				  	console.log("json");
-				  	console.log(json);
 				    switch(json.status.code) {
 				    	case "200":
 				    		if(json.product.image !== null) {
