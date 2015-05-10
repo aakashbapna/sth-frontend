@@ -18,12 +18,22 @@ let getLatLng = function() {
 	});
 }
 
+let doSignup = function(data) {
+	console.log(data)
+	return Promise.resolve({
+		done: true
+	});
+}
+
 // TODO validate before returning
 export default class SignupActions extends Actions {
-	setSync(prop, val) {
-		return { [prop]: val };
+	setName(name) {
+		return name;
 	}
 	async setLocation() {
 		return await getLatLng();
+	}
+	async doSignup(data) {
+		return await doSignup(data);
 	}
 }

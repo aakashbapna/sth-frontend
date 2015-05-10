@@ -1,6 +1,7 @@
 import React from 'react';
-import {TextField, Paper, Checkbox, RaisedButton} from 'material-ui';
+import {TextField, Paper, Checkbox, RaisedButton, Dialog} from 'material-ui';
 import GoogleMaps from './GoogleMaps';
+import RouterContainer from './RouterContainer';
 
 export default class StoreForm extends React.Component {
 	state = {
@@ -10,21 +11,47 @@ export default class StoreForm extends React.Component {
 		deliver_within: 0
 	}
 	checkPickup(x) {
-		console.log(x);
+		this.setState({
+			pickup: this.refs.pickup.isChecked()
+		});
 	}
 	checkDelivery(x) {
-		console.log(x);
+		this.setState({
+			delivery: this.refs.delivery.isChecked()
+		});
 	}
 	handleSubmit() {
-		console.log(this.refs);
+		let i = this.refs;
+		let data = {
+			id: this.props.user.userid,
+			name: this.props.signup.name,
+			fullname: i.fullname.getValue(),
+			email: i.email.getValue(),
+			phone_number: i.phone_number,
+			pickup: i.pickup.isChecked() ? 1 : 0,
+			delivery: i.delivery.isChecked() ? 1 : 0,
+			deliver_within: i.deliver_within && i.deliver_within.getValue(),
+			location: this.props.signup.location,
+		};
+		this.props.flux.getActions('signup').doSignup(data);
+	}
+	moveon() {
+		RouterContainer.get().transitionTo('/dashboard');
 	}
 	render() {
 		console.log(this.props);
+		var dactions = [
+			{
+				text: 'Cool !',
+				ref: 'moveon',
+				onClick: this.moveon.bind(this)
+			}
+		];
 		return <div className='store-form'>
 			<Paper>
 				<TextField
 					ref='fullname'
-					value={this.props.user.fullname}
+					defaultValue={this.props.user.fullname}
 					floatingLabelText='Owner Name'/>
 				<TextField
 					ref='email'
@@ -46,8 +73,14 @@ export default class StoreForm extends React.Component {
 						ref='delivery'
 						onCheck={this.checkDelivery.bind(this)}
 						label='Delivery'/>
+					{this.state.delivery &&
+						<TextField
+							ref='deliver_within'
+							floatingLabelText='Deliver within (in KM)'
+							defaultValue='2' />
+					}
 				</div>
-				<div>
+				<div className='maps-container'>
 					<GoogleMaps location={this.props.signup.location} />
 				</div>
 				<div className='submit-button'>
@@ -56,6 +89,14 @@ export default class StoreForm extends React.Component {
 						primary={true}
 						onClick={this.handleSubmit.bind(this)}/>
 				</div>
+				{this.props.signup.done && <Dialog
+					ref='donedialog'
+					title='Store created'
+					actions={dactions}
+					openImmediately={true}
+					actionFocus='moveon'>
+					Store has been successfully created.
+				</Dialog>}
 			</Paper>
 		</div>;
 	}

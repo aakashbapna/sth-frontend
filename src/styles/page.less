@@ -12,12 +12,16 @@
 }
 
 .store-form {
+	position: relative;
 	width: 50%;
 	min-width: 360px;
 	margin: auto;
 	padding: 20px;
-	height: inherit;
+	// height: inherit;
 	>.mui-paper {
+		>.mui-paper-container {
+			padding: 20px;
+		}
 		background: white;
 		.mui-text-field {
 			margin: auto;
@@ -29,10 +33,19 @@
 		}
 		.submit-button {
 			width: 256px;
-			margin: auto;
+			margin: 20px auto;
 			text-align: center;
 		}
 	}
+}
+
+.login-fb {
+	padding: 40px;
+	text-align:center;
+}
+
+.maps-container {
+	height: 300px;
 }
 
 .store-name-component {

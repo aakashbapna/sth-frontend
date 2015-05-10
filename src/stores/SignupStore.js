@@ -6,35 +6,24 @@ export default class SignupStore extends Store {
 
 		const signupActionIds = flux.getActionIds('signup');
 
-		this.register(signupActionIds.setSync, this.handleSetSync);
+		this.register(signupActionIds.setName, this.handleSetName);
 		this.register(signupActionIds.setLocation, this.handleSetLocation);
+		this.register(signupActionIds.doSignup, this.handleSignup);
 
 		// Signup details
 		this.state = {
 			name: null,
-			email: null,
-			phone_number: null,
-			pickup: false,
-			delivery: false,
-			deliver_within: 0,
 			location: {
 				lat: 0,
 				lng: 0
 			},
-			working_hours: {
-				start: 10,
-				end: 22
-			},
-			working_days: {
-				weekdays: true,
-				weekends: true
-			}
+			done: false,
+			doneData: null,
 		};
 
 	}
-	handleSetSync(prop) {
-		let state = Object.assign({}, prop);
-		this.setState(state);
+	handleSetName(name) {
+		this.setState({name});
 	}
 	handleSetLocation(location) {
 		let locState = {
@@ -43,6 +32,13 @@ export default class SignupStore extends Store {
 		};
 		this.setState({
 			location: locState
+		});
+	}
+	handleSignup(resp) {
+		console.log('Done');
+		this.setState({
+			done: true,
+			doneData: resp
 		});
 	}
 }
