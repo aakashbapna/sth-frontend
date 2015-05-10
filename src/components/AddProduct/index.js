@@ -9,7 +9,8 @@ export default class AddProduct extends React.Component {
 	state = {
 		dismissOnClickAway: true,
 		modal: false,
-		photoMode: false
+		photoMode: false,
+		entryMode: false
 	}
 
 	onShow() {
@@ -17,13 +18,16 @@ export default class AddProduct extends React.Component {
 	}
 
 	render() {
-		var photoMode, standardActions = [
+		var photoMode, entryMode, standardActions = [
 			  { text: 'Cancel' },
 			  { text: 'Submit', onClick: this._onDialogSubmit, ref: 'submit' }
 			];
 
-		// if (this.state.photoMode)
-		// 	photoMode = <PhotoMode ref="photoMode" />;
+		if (this.state.photoMode)
+			photoMode = <PhotoMode ref="photoMode" />;
+
+		if (this.state.entryMode)
+			entryMode = <EntryForm categories={this.props.categories} />
 
 		return <Dialog
 					ref="addentry"
@@ -34,7 +38,7 @@ export default class AddProduct extends React.Component {
 					onShow={this.onShow.bind(this)}
 					dismissOnClickAway={this.state.dismissOnClickAway}>
 				{photoMode}
-				<EntryForm categories={this.props.categories} />
+				{entryMode}
 			</Dialog>;
 	}
 }
