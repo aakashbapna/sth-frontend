@@ -14,7 +14,7 @@ export default class AddProduct extends React.Component {
 	}
 
 	addStoreToDB(storeObj){
-		fetch('/backend',{
+		fetch('/addProduct' ,{
 			method: 'POST',
 			body: JSON.stringify(storeObj)
 		}).then(resp => {

@@ -2,6 +2,7 @@ import React from 'react';
 
 import  Quagga from 'quagga';
 
+//TODO: Write this using flux
 
 export default class PhotoMode extends React.Component {
 	state = {
@@ -53,6 +54,9 @@ export default class PhotoMode extends React.Component {
 						  	console.log("product identified.. moving to thenext page...");
 
 						  	that.props.parent.showForm();
+						  }).catch(function() {
+						  	// Couldn't contact google server
+						  	that.props.parent.showForm();
 						  });
 		        	};
 
@@ -92,7 +96,7 @@ export default class PhotoMode extends React.Component {
 
 	render() {
 		console.log(this.props);
-		return <div id="photoMode">
+		return <div>
 					<span className="status">{this.state.status}</span>
 					<div id="interactive" className="viewport"></div>
 				</div>;
