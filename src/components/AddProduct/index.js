@@ -14,10 +14,11 @@ export default class AddProduct extends React.Component {
 	}
 
 	addStoreToDB(storeObj){
-		fetch('/addProduct' ,{
+		fetch('/addProduct/' + storeObj.sid ,{
 			method: 'POST',
 			body: JSON.stringify(storeObj)
 		}).then(resp => {
+			console.log(resp);
 			if (resp.status !== 200) {
 				return resp.json().then(bodyJson => {
 					return Promise.reject(
@@ -54,7 +55,7 @@ export default class AddProduct extends React.Component {
 			var props = this.refs.entryForm.refs;
 
 			var obj = {
-				"sid": 100010,
+				"sid": 123,
 				"name": props.name.getValue(),
 				"image": props.image.props.src,
 				"pid": props.barcode.props.value,
@@ -62,6 +63,8 @@ export default class AddProduct extends React.Component {
 				"quantity": props.quantity.getValue(),
 				"unit": props.unit.getValue()
 			};
+
+			console.log(obj);
 
 
 			this.addStoreToDB(obj);

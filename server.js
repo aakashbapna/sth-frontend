@@ -49,8 +49,8 @@ app.get('/backend/:storeid?', function(req, res) {
 });
 
 app.post('/addProduct/:storeId', function(req, res) {
-	request.get({
-		url: 'https://frozen-meadow-6067.herokuapp.com/Product',
+	request.post({
+		url: 'https://frozen-meadow-6067.herokuapp.com/Product/' + req.params.storeid,
 		data: req.body
 	}).pipe(res);
 });
