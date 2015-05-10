@@ -23,15 +23,16 @@ export default class StoreForm extends React.Component {
 	handleSubmit() {
 		let i = this.refs;
 		let data = {
-			id: this.props.user.userid,
+			sid: this.props.user.userid,
 			name: this.props.signup.name,
-			fullname: i.fullname.getValue(),
+			ownername: i.fullname.getValue(),
 			email: i.email.getValue(),
 			phone_number: i.phone_number,
 			pickup: i.pickup.isChecked() ? 1 : 0,
 			delivery: i.delivery.isChecked() ? 1 : 0,
 			deliver_within: i.deliver_within && i.deliver_within.getValue(),
-			location: this.props.signup.location,
+			location: this.props.signup.location.lat + ',' + this.props.signup.location.lng,
+			products: []
 		};
 		this.props.flux.getActions('signup').doSignup(data);
 	}

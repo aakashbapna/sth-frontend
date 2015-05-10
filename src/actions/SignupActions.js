@@ -16,14 +16,14 @@ let getLatLng = function() {
 			timeout: 10*1000
 		});
 	});
-}
+};
 
 let doSignup = function(data) {
-	console.log(data)
-	return Promise.resolve({
-		done: true
+	return fetch('/stores', {
+		method: 'POST',
+		data: data
 	});
-}
+};
 
 // TODO validate before returning
 export default class SignupActions extends Actions {
